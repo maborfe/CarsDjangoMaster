@@ -93,10 +93,10 @@
     }
   </style>
 
-  <form method="GET" action="{% url 'car_list' %}" >
+  {% comment %} <form method="GET" action="{% url 'car_list' %}" >
     <input type="text" name="search" placeholder="Buscar carro...">
     <button type="submit">Buscar</button>
-  </form>
+  </form> {% endcomment %}
 
   <div class="car-grid">
     {% if cars %}

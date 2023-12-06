@@ -23,11 +23,17 @@ def car_list(request):
 def new_car(request):
     
     if request.method == "POST":
-        new_car = FormCar(request.POST, request.FILES)
+        # new_car = FormCar(request.POST, request.FILES)
+        # if new_car.is_valid():
+        #     new_car.save()
+        #     return redirect('car_list')
+
+        new_car = CarModelForm(request.POST, request.FILES)
+        
         if new_car.is_valid():
             new_car.save()
             return redirect('car_list')
     else:
-        new_car = FormCar()
+        new_car = CarModelForm()
 
     return render(request, 'new_car.html', context={'form': new_car})
