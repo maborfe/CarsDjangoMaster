@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>
+<h1 class="text-center">Register User</h1>
+<form action="{% url "register" %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="container" style="width: 800px;">
+            <hr>
+            <br>
+            <table class="table table-bordered table-striped">
+                {{ form.as_table }}
+            </table>
+            <br>    
+            <input type="submit" class="btn btn-primary" value="Registrar">
+    
+        </div>
+
+    </form>
+
+{% endblock content %}
