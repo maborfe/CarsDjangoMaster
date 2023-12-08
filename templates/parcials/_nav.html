@@ -6,20 +6,40 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active btn" aria-current="page" href="{% url "new_car" %}">Novo Carro</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url "register" %}">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url "login" %}">Login</a>
-        </li>
+        {% if not user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "register" %}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "login" %}">Login</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link active btn" aria-current="page" href="{% url "new_car" %}">Novo Carro</a>
+          </li>
+  
+        {% endif %}
       </ul>
       <form method="GET" action='{% url "car_list" %}' class="d-flex" role="search">
         <input class="form-control me-2" name="search" type="search" placeholder="Pesquisar Carro..." aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
+
+      <div style="align: right: inherit;">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <p class="nav-link active">olá,
+                {{user.username}}</p>
+            </li>
+          {% endif %}
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "logout" %}">Logout</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

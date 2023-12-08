@@ -1,29 +1,29 @@
 from django import forms
 from .models import *
 
-class FormCar(forms.Form):
+# class FormCar(forms.Form):
 
-   model =  forms.CharField(label= 'Modelo' ,max_length=80, required=True)
-   brand = forms.ModelChoiceField(Marca.objects.all(), label='Marca2222')
-   modelYear = forms.IntegerField(label='Ano do Modelo', required=False)
-   factoryYear = forms.IntegerField(label='Ano de Fábrica', required=False)
-   plate = forms.CharField(label='Placa', max_length = 10)
-   price = forms.DecimalField(label='Preço', max_digits=10, decimal_places=2)
-   photo = forms.ImageField(label='Foto(s)', required=False)
+#    model =  forms.CharField(label= 'Modelo' ,max_length=80, required=True)
+#    brand = forms.ModelChoiceField(Marca.objects.all(), label='Marca2222')
+#    modelYear = forms.IntegerField(label='Ano do Modelo', required=False)
+#    factoryYear = forms.IntegerField(label='Ano de Fábrica', required=False)
+#    plate = forms.CharField(label='Placa', max_length = 10)
+#    price = forms.DecimalField(label='Preço', max_digits=10, decimal_places=2)
+#    photo = forms.ImageField(label='Foto(s)', required=False)
          
 
-   def save(self):
-      car = Car(
-         model = self.cleaned_data['model'],
-         brand = self.cleaned_data['brand'],
-         modelYear = self.cleaned_data['modelYear'],
-         factoryYear = self.cleaned_data['factoryYear'],
-         plate = self.cleaned_data['plate'],
-         price = self.cleaned_data['price'],
-         photo = self.cleaned_data['photo'],
-      )
-      car.save()
-      return car
+#    def save(self):
+#       car = Car(
+#          model = self.cleaned_data['model'],
+#          brand = self.cleaned_data['brand'],
+#          modelYear = self.cleaned_data['modelYear'],
+#          factoryYear = self.cleaned_data['factoryYear'],
+#          plate = self.cleaned_data['plate'],
+#          price = self.cleaned_data['price'],
+#          photo = self.cleaned_data['photo'],
+#       )
+#       car.save()
+#       return car
     
 class CarModelForm(forms.ModelForm):
    class Meta:
@@ -64,9 +64,9 @@ class CarModelForm(forms.ModelForm):
    # backend receber os dados do form e cair na função form.is_valid()
    # o is_valid está diretamente ligad com essas funções começando com o clean_
 
-   def clean_factoryYear(self):
-      factoryYear = self.cleaned_data['factoryYear']
-      if factoryYear < 2000:
-         raise forms.ValidationError('Ano de Fábrica deve ser maior que 1900')
-      return factoryYear
+   # def clean_factoryYear(self):
+   #    factoryYear = self.cleaned_data['factoryYear']
+   #    if factoryYear < 1970:
+   #       raise forms.ValidationError('Ano de Fábrica deve ser maior que 1999')
+   #    return factoryYear
       
