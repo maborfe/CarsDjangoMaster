@@ -37,7 +37,8 @@ class CarModelForm(forms.ModelForm):
          'brand': forms.Select(attrs={'class': 'form-control'}),
          'factoryYear': forms.NumberInput(attrs={'class': 'form-control'}),
          'plate': forms.TextInput(attrs={'class': 'form-control'}),
-         'modelYear': forms.NumberInput(attrs={'class': 'form-control'}),         
+         'modelYear': forms.NumberInput(attrs={'class': 'form-control'}),    
+         'bio': forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 500px; height: 300px'}),     
       }
       labels = {
          'model': 'Modelo',
@@ -46,6 +47,7 @@ class CarModelForm(forms.ModelForm):
          'plate': 'Placa',
          'photo': 'Foto(s)',
          'price': 'Preço',
+         'bio': 'Bio'
       }
       # error_messages = {
       #    'price': {

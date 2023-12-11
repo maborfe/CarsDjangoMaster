@@ -6,7 +6,9 @@ from django.views import View
 from .models import *
 from django.forms import forms
 from .forms import *
-from django.views.generic import ListView, CreateView, DetailView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # def car_list(request):
 
@@ -89,7 +91,7 @@ class CarListViewGeneric(ListView):
              
 #         return render(request, 'new_car.html', context={'form': new_car})
     
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class NewCarCreateView(CreateView):
     model = Car
     form_class = CarModelForm
@@ -100,7 +102,15 @@ class CarDetailView(DetailView):
     model = Car
     template_name = "car_detail.html"
 
-
 class CarDeleteView(DeleteView):
-    pass
+    model = Car
+    template_name = 'car_delete.html'
+    success_url = '/cars/car_list/'
+
+class CarUpdateView(UpdateView):
+    model = Car
+    form_class = CarModelForm
+    template_name = "car_update.html"
+    success_url = '/cars/car_list/'
+    
     
